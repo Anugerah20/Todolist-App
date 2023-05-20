@@ -22,7 +22,7 @@ function ListTodo() {
       <section className="w-[90%] md:w-[70%] lg:w-[39%] flex justify-between items-center mt-8 md:mt-6 lg:mt-6 mx-auto lg:mx-auto md:mx-auto bg-slate-50 shadow rounded px-3 py-3">
         <div className="flex justify-center items-center">
           <input
-            className="w-7 h-5 sm:w-9 sm:h-8"
+            className="w-7 h-5 sm:w-9 sm:h-8 cursor-pointer"
             type="checkbox"
             name="todo"
             id="todo"
