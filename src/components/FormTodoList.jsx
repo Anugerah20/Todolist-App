@@ -29,20 +29,21 @@ function FormTodoList() {
       <section className="flex sm:flex justify-center sm:justify-center items-center sm:items-start w-full mx-4 sm:mx-auto mt-10 sm:mt-10 md:mt-5 lg:mt-10">
         <form onSubmit={handleSubmit}>
           <input
-            className="w-full sm:w-[450px] px-2 py-2 outline-none border-2 border-violet-600 rounded-sm caret-violet-600 invalid:border-red-600"
+            className="w-full sm:w-[450px] px-2 py-2 outline-none border-2 border-violet-600 rounded-sm caret-violet-600 text-violet-600 invalid:border-red-600"
             type="text"
             name="todo"
             id="todo"
             placeholder="What to do"
             value={inputTodoList}
             onChange={(e) => setInputTodoList(e.target.value)}
+            autoComplete="off"
             required
           />
           <button
-            className="inline-block ml-0 sm:ml-5 mt-5 sm:mt-0 w-full sm:w-20 h-10 sm:h-auto px-20 sm:px-4 sm:py-2 py-2 rounded-sm bg-violet-600 text-white hover:bg-violet-800 hover:transition hover:duration-200 hover:ease-in hover:font-bold border-none outline-none text-center"
+            className="inline-block ml-0 sm:ml-5 mt-5 sm:mt-0 w-full sm:w-20 h-10 sm:h-auto px-20 sm:px-4 sm:py-2 py-2 rounded-sm bg-violet-600 text-white hover:bg-violet-800 hover:transition hover:duration-200 hover:ease-in hover:font-bold uppercase border-none outline-none text-center"
             type="submit"
           >
-            ADD
+            add
           </button>
         </form>
       </section>
