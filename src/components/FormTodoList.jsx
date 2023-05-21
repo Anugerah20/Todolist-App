@@ -10,18 +10,20 @@ function FormTodoList() {
     e.preventDefault();
 
     // console.log(inputTodoList);
-
-    const newTodoList = {
-      id: 4,
+    let date = new Date();
+    let time = date.getTime();
+    let newTodoList = {
+      id: time,
       title: inputTodoList,
       completed: false,
     };
-
+    console.log(newTodoList);
+    setInputTodoList("");
     dispatch(addTodoList(newTodoList));
   };
   return (
     <main className="w-[90%] sm:w-max h-[50vh] sm:h-[50vh] lg:h[50vh] mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col">
-      <h1 className="text-center sm:text-center text-3xl sm:text-4xl font-black">
+      <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
         What the plan for today?
       </h1>
       <section className="flex sm:flex justify-center sm:justify-center items-center sm:items-start w-full mx-4 sm:mx-auto mt-10 sm:mt-10 md:mt-5 lg:mt-10">
