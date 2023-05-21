@@ -17,7 +17,7 @@ function FormTodoList() {
       title: inputTodoList,
       completed: false,
     };
-    console.log(newTodoList);
+    // console.log(newTodoList);
     setInputTodoList("");
     dispatch(addTodoList(newTodoList));
   };
