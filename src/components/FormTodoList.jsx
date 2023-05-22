@@ -9,20 +9,24 @@ function FormTodoList() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // console.log(inputTodoList);
-    let date = new Date();
-    let time = date.getTime();
-    let newTodoList = {
-      id: time,
-      title: inputTodoList,
-      completed: false,
-    };
-    // console.log(newTodoList);
-    setInputTodoList("");
-    dispatch(addTodoList(newTodoList));
+    if (!inputTodoList) {
+      alert("This input must not be empty!");
+    } else {
+      // console.log(inputTodoList);
+      let date = new Date();
+      let time = date.getTime();
+      let newTodoList = {
+        id: time,
+        title: inputTodoList,
+        completed: false,
+      };
+      // console.log(newTodoList);
+      setInputTodoList("");
+      dispatch(addTodoList(newTodoList));
+    }
   };
   return (
-    <main className="w-[90%] sm:w-max h-[50vh] sm:h-[50vh] lg:h[50vh] mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col">
+    <main className="w-[90%] sm:w-max h-[40vh] sm:h-[40vh] lg:h[40vh] mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col">
       <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
         What the plan for today?
       </h1>
@@ -37,7 +41,6 @@ function FormTodoList() {
             value={inputTodoList}
             onChange={(e) => setInputTodoList(e.target.value)}
             autoComplete="off"
-            required
           />
           <button
             className="inline-block ml-0 sm:ml-5 mt-5 sm:mt-0 w-full sm:w-20 h-10 sm:h-auto px-20 sm:px-4 sm:py-2 py-2 rounded-sm bg-violet-600 text-white hover:bg-violet-800 hover:transition hover:duration-200 hover:ease-in hover:font-bold uppercase border-none outline-none text-center"
