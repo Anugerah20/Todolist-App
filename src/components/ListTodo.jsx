@@ -23,15 +23,24 @@ function ListTodo() {
 
       {/* START: List Todo */}
       <section className="w-[90%] md:w-[70%] lg:w-[39%] flex flex-col gap-3 mx-auto mt-5 md:mt-6 lg:mt-6 bg-slate-50 shadow rounded px-4 py-4">
-        {todos.map((item) => (
-          <div key={item.id} className="flex items-center mb-4 p-2 border-2">
+        {todos.map((todo) => (
+          <div key={todo.id} className="flex items-center mb-4 p-2 border-2">
             <input
               className="w-7 h-5 sm:w-9 sm:h-8 cursor-pointer"
               type="checkbox"
               name="todo"
               id="todo"
             />
-            <p className="text-xl sm:text-2xl ml-2">{item.title}</p>
+            <p
+              className="text-xl sm:text-2xl ml-1"
+              style={
+                todo.completed === true
+                  ? { textDecoration: "line-through" }
+                  : { textDecoration: "none" }
+              }
+            >
+              {todo.title}
+            </p>
             <div className="flex items-center ml-auto gap-4 cursor-pointer">
               <FiEdit2 className="text-xl sm:text-2xl" />
               <FiTrash className="text-xl sm:text-2xl" />
