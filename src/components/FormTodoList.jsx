@@ -15,14 +15,14 @@ function FormTodoList() {
       // console.log(inputTodoList);
       let date = new Date();
       let time = date.getTime();
-      let newTodoList = {
+      let todoObj = {
         id: time,
         title: inputTodoList,
         completed: false,
       };
-      // console.log(newTodoList);
+      // console.log(todoObj);
       setInputTodoList("");
-      dispatch(addTodoList(newTodoList));
+      dispatch(addTodoList(todoObj));
     }
   };
   return (
