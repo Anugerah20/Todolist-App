@@ -30,6 +30,8 @@ function ListTodo() {
               type="checkbox"
               name="todo"
               id="todo"
+              checked={todo.completed}
+              // onChange={() => dispatch(handleCheckbox(todo.id))}
             />
             <p
               className="text-xl sm:text-2xl ml-1"
