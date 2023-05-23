@@ -1,7 +1,7 @@
 import {
   ADD_TODO_LIST,
   REMOVE_TODO_LIST,
-  UPDATE_TODO_LIST,
+  EDIT_TODO_LIST,
 } from "../actions/todoListAction";
 
 const initialState = {
@@ -18,11 +18,20 @@ export const todoListReducer = (state = initialState, action) => {
       return {
         todos: state.todos.filter((todo) => todo.id !== action.payload.id),
       };
-    case UPDATE_TODO_LIST:
+    // case EDIT_TODO_LIST:
+    //   return {
+    //     todos: state.todos.map((todo) =>
+    //       todo.id === action.payload.id
+    //         ? { ...todo, text: action.payload.text }
+    //         : todo
+    //     ),
+    //   };
+
+    case EDIT_TODO_LIST:
       return {
         todos: state.todos.map((todo) =>
           todo.id === action.payload.id
-            ? { ...todo, text: action.payload.text }
+            ? Object.assign({}, action.payload)
             : todo
         ),
       };
