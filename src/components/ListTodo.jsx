@@ -1,9 +1,13 @@
 import { FiEdit2 } from "react-icons/fi";
 import { FiTrash } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeTodoList } from "../redux/actions/todoListAction";
+import { useState } from "react";
 
 function ListTodo() {
+  const dispatch = useDispatch();
   const { todos } = useSelector((state) => state);
+  const [setEditTodoId] = useState(null);
 
   return (
     <main className="font-sansPro text-center md:text-center">
@@ -30,13 +34,13 @@ function ListTodo() {
               type="checkbox"
               name="todo"
               id="todo"
-              checked={todo.completed}
+              // checked={todo.completed}
               // onChange={() => dispatch(handleCheckbox(todo.id))}
             />
             <p
               className="text-xl sm:text-2xl ml-1"
               style={
-                todo.completed === true
+                todo === true
                   ? { textDecoration: "line-through" }
                   : { textDecoration: "none" }
               }
@@ -44,8 +48,12 @@ function ListTodo() {
               {todo.title}
             </p>
             <div className="flex items-center ml-auto gap-4 cursor-pointer">
-              <FiEdit2 className="text-xl sm:text-2xl" />
-              <FiTrash className="text-xl sm:text-2xl" />
+              <button onClick={() => setEditTodoId(todo.id)}>
+                <FiEdit2 className="text-xl sm:text-2xl" />
+              </button>
+              <button onClick={() => dispatch(removeTodoList(todo))}>
+                <FiTrash className="text-xl sm:text-2xl" />
+              </button>
             </div>
           </div>
         ))}
