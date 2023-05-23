@@ -18,22 +18,18 @@ export const todoListReducer = (state = initialState, action) => {
       return {
         todos: state.todos.filter((todo) => todo.id !== action.payload.id),
       };
-    // case EDIT_TODO_LIST:
-    //   return {
-    //     todos: state.todos.map((todo) =>
-    //       todo.id === action.payload.id
-    //         ? { ...todo, text: action.payload.text }
-    //         : todo
-    //     ),
-    //   };
-
     case EDIT_TODO_LIST:
       return {
-        todos: state.todos.map((todo) =>
-          todo.id === action.payload.id
-            ? Object.assign({}, action.payload)
-            : todo
-        ),
+        ...state,
+        todos: state.todos.map((todo) => {
+          if (todo.id === action.payload.id) {
+            return {
+              ...todo,
+              title: action.payload.title,
+            };
+          }
+          return todo;
+        }),
       };
     default:
       return state;
