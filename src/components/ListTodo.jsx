@@ -7,7 +7,7 @@ import { useState } from "react";
 function ListTodo() {
   const dispatch = useDispatch();
   const { todos } = useSelector((state) => state);
-  const [setEditTodoId] = useState(null);
+  const [editTodoId, setEditTodoId] = useState(null);
 
   return (
     <main className="font-sansPro text-center md:text-center">
