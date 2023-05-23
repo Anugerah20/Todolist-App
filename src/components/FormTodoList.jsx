@@ -1,16 +1,22 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { addTodoList } from "../redux/reducers/todoListReducer";
+import { addTodoList, updateTodoList } from "../redux/actions/todoListAction";
 
 function FormTodoList() {
   const dispatch = useDispatch();
   const [inputTodoList, setInputTodoList] = useState("");
+
+  const [editTodoId, setEditTodoId] = useState(null);
+  const [updateTodoText, setUpdateTodoText] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!inputTodoList) {
       alert("This input must not be empty!");
+    } else if (editTodoId) {
+      dispatch(updateTodoList(editTodoId, inputTodoList));
+      setEditTodoId(null);
     } else {
       // console.log(inputTodoList);
       let date = new Date();
@@ -38,15 +44,19 @@ function FormTodoList() {
             name="todo"
             id="todo"
             placeholder="What to do"
-            value={inputTodoList}
-            onChange={(e) => setInputTodoList(e.target.value)}
+            value={editTodoId ? updateTodoText : inputTodoList}
+            onChange={(e) =>
+              editTodoId
+                ? setUpdateTodoText(e.target.value)
+                : setInputTodoList(e.target.value)
+            }
             autoComplete="off"
           />
           <button
             className="inline-block ml-0 sm:ml-5 mt-5 sm:mt-0 w-full sm:w-20 h-10 sm:h-auto px-20 sm:px-4 sm:py-2 py-2 rounded-sm bg-violet-600 text-white hover:bg-violet-800 hover:transition hover:duration-200 hover:ease-in hover:font-bold uppercase border-none outline-none text-center"
             type="submit"
           >
-            add
+            {editTodoId ? "Update" : "ADD"}
           </button>
         </form>
       </section>
