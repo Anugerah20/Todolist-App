@@ -2,6 +2,7 @@ import {
   ADD_TODO_LIST,
   REMOVE_TODO_LIST,
   EDIT_TODO_LIST,
+  TOGGLE_TODO_LIST,
 } from "../actions/todoListAction";
 
 const initialState = {
@@ -30,6 +31,15 @@ export const todoListReducer = (state = initialState, action) => {
           }
           return todo;
         }),
+      };
+    case TOGGLE_TODO_LIST:
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload.id
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        ),
       };
     default:
       return state;
