@@ -1,6 +1,6 @@
 export const ADD_TODO_LIST = "ADD_TODO_LIST";
 export const REMOVE_TODO_LIST = "REMOVE_TODO_LIST";
-export const UPDATE_TODO_LIST = "UPDATE_TODO_LIST";
+export const EDIT_TODO_LIST = "EDIT_TODO_LIST";
 export const UPDATE_CHECKBOX = "UPDATE_CHECKBOX";
 
 export const addTodoList = (newTodoList) => {
@@ -17,9 +17,16 @@ export const removeTodoList = (todo) => {
   };
 };
 
-export const updateTodoList = (payload) => {
+// export const updateTodoList = (payload) => {
+//   return {
+//     type: EDIT_TODO_LIST,
+//     payload,
+//   };
+// };
+
+export const editTodoList = (todo) => {
   return {
-    type: UPDATE_TODO_LIST,
-    payload,
+    type: EDIT_TODO_LIST,
+    payload: todo,
   };
 };
