@@ -10,10 +10,12 @@ export const addTodoList = (newTodoList) => {
   };
 };
 
-export const removeTodoList = (todo) => {
+export const removeTodoList = (id) => {
   return {
     type: REMOVE_TODO_LIST,
-    payload: todo,
+    payload: {
+      id,
+    },
   };
 };
 
