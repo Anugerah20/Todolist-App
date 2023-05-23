@@ -74,14 +74,14 @@ function FormTodoList() {
       </section>
 
       {/* START: Filter Button */}
-      <section className="font-sansPro flex flex-wrap justify-center sm:justify-start md:justify-center items-center mx-auto mt-4 sm:mt-2 md:mt-2 lg:mt-2">
+      <section className="font-sansPro flex flex-wrap justify-center sm:justify-start md:justify-center items-center mx-auto mt-6 sm:mt-6 md:mt-6 lg:mt-6">
         <button className="px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 bg-green-500 text-white rounded-full font-bold mb-2 sm:mb-0">
           ALL
         </button>
         <button className="px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 bg-slate-500 text-white rounded-full font-bold mb-2 sm:mb-0">
           ACTIVE
         </button>
-        <button className="px-3 py-2 sm:px-4 sm:py-2 bg-slate-500 text-white rounded-full font-bold">
+        <button className="px-3 py-2 sm:px-4 sm:py-2 bg-slate-500 text-white rounded-full font-bold mb-2 sm:mb-0">
           COMPLETED
         </button>
       </section>
@@ -89,36 +89,42 @@ function FormTodoList() {
 
       {/* START: List Todo */}
       <section className="w-[90%] md:w-[90%] lg:w-[90%] flex flex-col gap-3 mx-auto mt-5 md:mt-6 lg:mt-6 bg-slate-50 shadow rounded px-4 py-4">
-        {todos.map((todo) => (
-          <div key={todo.id} className="flex items-center mb-4 p-2 border-2">
-            <input
-              className="w-7 h-5 sm:w-9 sm:h-8 cursor-pointer"
-              type="checkbox"
-              name="todo"
-              id="todo"
-              // checked={todo.completed}
-              // onChange={() => dispatch(handleCheckbox(todo.id))}
-            />
-            <p
-              className="text-xl sm:text-2xl ml-1"
-              style={
-                todo === true
-                  ? { textDecoration: "line-through" }
-                  : { textDecoration: "none" }
-              }
-            >
-              {todo.title}
-            </p>
-            <div className="flex items-center ml-auto gap-4 cursor-pointer">
-              <button onClick={() => handleEditTodoList(todo)}>
-                <FiEdit2 className="text-xl sm:text-2xl" />
-              </button>
-              <button onClick={() => dispatch(removeTodoList(todo))}>
-                <FiTrash className="text-xl sm:text-2xl" />
-              </button>
+        {todos.length === 0 ? (
+          <p className="text-center text-lg text-red-600 font-bold">
+            No data to display
+          </p>
+        ) : (
+          todos.map((todo) => (
+            <div key={todo.id} className="flex items-center mb-4 p-2 border-2">
+              <input
+                className="w-7 h-5 sm:w-9 sm:h-8 cursor-pointer"
+                type="checkbox"
+                name="todo"
+                id="todo"
+                // checked={todo.completed}
+                // onChange={() => dispatch(handleCheckbox(todo.id))}
+              />
+              <p
+                className="text-xl ml-1 text-violet-600"
+                style={
+                  todo === true
+                    ? { textDecoration: "line-through" }
+                    : { textDecoration: "none" }
+                }
+              >
+                {todo.title}
+              </p>
+              <div className="flex items-center ml-auto gap-4 cursor-pointer">
+                <button onClick={() => handleEditTodoList(todo)}>
+                  <FiEdit2 className="text-xl sm:text-2xl text-green-700" />
+                </button>
+                <button onClick={() => dispatch(removeTodoList(todo))}>
+                  <FiTrash className="text-xl sm:text-2xl text-red-700" />
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </section>
       {/* END: List Todo */}
     </main>
