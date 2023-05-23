@@ -17,6 +17,7 @@ export const todoListReducer = (state = initialState, action) => {
       };
     case REMOVE_TODO_LIST:
       return {
+        ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload.id),
       };
     case EDIT_TODO_LIST:
