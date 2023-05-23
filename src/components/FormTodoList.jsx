@@ -36,7 +36,7 @@ function FormTodoList() {
         title: inputTodoList,
         completed: false,
       };
-      console.log(todoObj);
+      // console.log(todoObj);
       setInputTodoList("");
       dispatch(addTodoList(todoObj));
     }
@@ -46,6 +46,13 @@ function FormTodoList() {
   const handleEditTodoList = (todo) => {
     setUpdateTodoList(todo);
     setInputTodoList(todo.title);
+  };
+
+  // Melakukan Hapus TODO
+  const handleRemoveTodoList = (todo) => {
+    setInputTodoList(todo.title);
+    dispatch(removeTodoList(todo.id));
+    setInputTodoList("");
   };
 
   // Ceklis TODO jika sudah selesai
@@ -125,7 +132,7 @@ function FormTodoList() {
                 <button onClick={() => handleEditTodoList(todo)}>
                   <FiEdit2 className="text-xl sm:text-2xl text-green-700" />
                 </button>
-                <button onClick={() => dispatch(removeTodoList(todo))}>
+                <button onClick={() => handleRemoveTodoList(todo)}>
                   <FiTrash className="text-xl sm:text-2xl text-red-700" />
                 </button>
               </div>
