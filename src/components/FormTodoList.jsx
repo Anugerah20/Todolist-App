@@ -6,6 +6,7 @@ import {
   addTodoList,
   removeTodoList,
   editTodoList,
+  toggleTodoList,
 } from "../redux/actions/todoListAction";
 
 function FormTodoList() {
@@ -41,9 +42,15 @@ function FormTodoList() {
     }
   };
 
+  // Melakukan Edit TODO
   const handleEditTodoList = (todo) => {
     setUpdateTodoList(todo);
     setInputTodoList(todo.title);
+  };
+
+  // Ceklis TODO jika sudah selesai
+  const handleCheckboxTodoList = (todo) => {
+    dispatch(toggleTodoList(todo));
   };
   return (
     <main className="w-[90%] sm:w-max h-auto sm:h-auto lg:h-auto mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col mt-20 lg:mt-20 md:mt-10">
@@ -101,13 +108,13 @@ function FormTodoList() {
                 type="checkbox"
                 name="todo"
                 id="todo"
-                // checked={todo.completed}
-                // onChange={() => dispatch(handleCheckbox(todo.id))}
+                checked={todo.completed}
+                onChange={() => handleCheckboxTodoList(todo)}
               />
               <p
                 className="text-xl ml-1 text-violet-600"
                 style={
-                  todo === true
+                  todo.completed
                     ? { textDecoration: "line-through" }
                     : { textDecoration: "none" }
                 }
