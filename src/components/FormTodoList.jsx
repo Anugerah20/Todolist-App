@@ -165,14 +165,16 @@ function FormTodoList() {
               >
                 {todo.title}
               </p>
-              <div className="flex items-center ml-auto gap-4 cursor-pointer">
-                <button onClick={() => handleEditTodoList(todo)}>
-                  <FiEdit2 className="text-xl sm:text-2xl text-green-700" />
-                </button>
-                <button onClick={() => handleRemoveTodoList(todo)}>
-                  <FiTrash className="text-xl sm:text-2xl text-red-700" />
-                </button>
-              </div>
+              {!todo.completed && (
+                <div className="flex items-center ml-auto gap-4 cursor-pointer">
+                  <button onClick={() => handleEditTodoList(todo)}>
+                    <FiEdit2 className="text-xl sm:text-2xl text-green-700" />
+                  </button>
+                  <button onClick={() => handleRemoveTodoList(todo)}>
+                    <FiTrash className="text-xl sm:text-2xl text-red-700" />
+                  </button>
+                </div>
+              )}
             </div>
           ))
         )}
