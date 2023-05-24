@@ -1,5 +1,4 @@
-import { FiEdit2 } from "react-icons/fi";
-import { FiTrash } from "react-icons/fi";
+import { FiEdit2, FiTrash } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import {
@@ -19,24 +18,24 @@ function FormTodoList() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!inputTodoList) {
+    if (!inputTodoList.trim()) {
       alert("This input must not be empty!");
     } else if (updateTodoList) {
+      // Melakukan Edit TODO
       const updatedTodo = {
         ...updateTodoList,
-        title: inputTodoList,
+        title: inputTodoList.trim(),
       };
-
       dispatch(editTodoList(updatedTodo));
       setUpdateTodoList(null);
       setInputTodoList("");
     } else {
+      // Melakukan Tambah TODO
       let todoObj = {
         id: Math.floor(Math.random() * 1000),
-        title: inputTodoList,
+        title: inputTodoList.trim(),
         completed: false,
       };
-      // console.log(todoObj);
       setInputTodoList("");
       dispatch(addTodoList(todoObj));
     }
@@ -50,9 +49,10 @@ function FormTodoList() {
 
   // Melakukan Hapus TODO
   const handleRemoveTodoList = (todo) => {
-    setInputTodoList(todo.title);
-    dispatch(removeTodoList(todo.id));
-    setInputTodoList("");
+    window.confirm("Are you sure to delete?") &&
+      (setInputTodoList(todo.title),
+      dispatch(removeTodoList(todo.id)),
+      setInputTodoList(""));
   };
 
   // Ceklis TODO jika sudah selesai
