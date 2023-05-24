@@ -81,6 +81,7 @@ function FormTodoList() {
   const filteredTodoList = getFilteredTodoList();
 
   return (
+    /* START: FORM TODO */
     <main className="w-[90%] sm:w-max h-auto sm:h-auto lg:h-auto mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col mt-20 lg:mt-20 md:mt-10">
       <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
         What the plan for today?
@@ -107,6 +108,7 @@ function FormTodoList() {
           </button>
         </form>
       </section>
+      {/* END FORM TODO */}
 
       {/* START: Filter Button */}
       <section className="font-sansPro flex flex-wrap justify-center sm:justify-start md:justify-center items-center mx-auto mt-6 sm:mt-6 md:mt-6 lg:mt-6">
@@ -136,7 +138,6 @@ function FormTodoList() {
         </button>
       </section>
       {/* END: Filter Button */}
-
       {/* START: List Todo */}
       <section className="w-[90%] md:w-[90%] lg:w-[90%] flex flex-col gap-3 mx-auto mt-5 md:mt-6 lg:mt-6 bg-slate-50 shadow rounded px-4 py-4">
         {filteredTodoList.length === 0 ? (
