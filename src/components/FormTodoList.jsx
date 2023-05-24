@@ -7,11 +7,12 @@ import {
   removeTodoList,
   editTodoList,
   toggleTodoList,
+  filterTodoList,
 } from "../redux/actions/todoListAction";
 
 function FormTodoList() {
   const dispatch = useDispatch();
-  const { todos } = useSelector((state) => state);
+  const { todos, filter } = useSelector((state) => state);
   const [inputTodoList, setInputTodoList] = useState("");
   const [updateTodoList, setUpdateTodoList] = useState(null);
 
@@ -29,7 +30,6 @@ function FormTodoList() {
       dispatch(editTodoList(updatedTodo));
       setUpdateTodoList(null);
       setInputTodoList("");
-      console.log(updateTodoList);
     } else {
       let todoObj = {
         id: Math.floor(Math.random() * 1000),
@@ -59,6 +59,27 @@ function FormTodoList() {
   const handleCheckboxTodoList = (todo) => {
     dispatch(toggleTodoList(todo));
   };
+
+  // Filter TODO
+  const handleFilterTodoList = (filter) => {
+    dispatch(filterTodoList(filter));
+  };
+
+  const getFilteredTodoList = () => {
+    switch (filter) {
+      case "ALL":
+        return todos;
+      case "ACTIVE":
+        return todos.filter((todo) => !todo.completed);
+      case "COMPLETED":
+        return todos.filter((todo) => todo.completed);
+      default:
+        return todos;
+    }
+  };
+
+  const filteredTodoList = getFilteredTodoList();
+
   return (
     <main className="w-[90%] sm:w-max h-auto sm:h-auto lg:h-auto mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col mt-20 lg:mt-20 md:mt-10">
       <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
@@ -89,13 +110,28 @@ function FormTodoList() {
 
       {/* START: Filter Button */}
       <section className="font-sansPro flex flex-wrap justify-center sm:justify-start md:justify-center items-center mx-auto mt-6 sm:mt-6 md:mt-6 lg:mt-6">
-        <button className="px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 bg-green-500 text-white rounded-full font-bold mb-2 sm:mb-0">
+        <button
+          className={`px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 rounded-full font-bold mb-2 sm:mb-0 text-white ${
+            filter === "ALL" ? "bg-green-500" : "bg-slate-500"
+          }`}
+          onClick={() => handleFilterTodoList("ALL")}
+        >
           ALL
         </button>
-        <button className="px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 bg-slate-500 text-white rounded-full font-bold mb-2 sm:mb-0">
+        <button
+          className={`px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 rounded-full font-bold mb-2 sm:mb-0 text-white ${
+            filter === "ACTIVE" ? "bg-green-500" : "bg-slate-500"
+          }`}
+          onClick={() => handleFilterTodoList("ACTIVE")}
+        >
           ACTIVE
         </button>
-        <button className="px-3 py-2 sm:px-4 sm:py-2 bg-slate-500 text-white rounded-full font-bold mb-2 sm:mb-0">
+        <button
+          className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full font-bold mb-2 sm:mb-0 text-white ${
+            filter === "COMPLETED" ? "bg-green-500" : "bg-slate-500"
+          }`}
+          onClick={() => handleFilterTodoList("COMPLETED")}
+        >
           COMPLETED
         </button>
       </section>
@@ -103,12 +139,12 @@ function FormTodoList() {
 
       {/* START: List Todo */}
       <section className="w-[90%] md:w-[90%] lg:w-[90%] flex flex-col gap-3 mx-auto mt-5 md:mt-6 lg:mt-6 bg-slate-50 shadow rounded px-4 py-4">
-        {todos.length === 0 ? (
+        {filteredTodoList.length === 0 ? (
           <p className="text-center text-lg text-red-600 font-bold">
             No data to display
           </p>
         ) : (
-          todos.map((todo) => (
+          filteredTodoList.map((todo) => (
             <div key={todo.id} className="flex items-center mb-4 p-2 border-2">
               <input
                 className="w-7 h-5 sm:w-9 sm:h-8 cursor-pointer"
