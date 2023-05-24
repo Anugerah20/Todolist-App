@@ -3,10 +3,12 @@ import {
   REMOVE_TODO_LIST,
   EDIT_TODO_LIST,
   TOGGLE_TODO_LIST,
+  FILTER_TODO_LIST,
 } from "../actions/todoListAction";
 
 const initialState = {
   todos: [],
+  filter: "ALL",
 };
 
 export const todoListReducer = (state = initialState, action) => {
@@ -41,6 +43,11 @@ export const todoListReducer = (state = initialState, action) => {
             ? { ...todo, completed: !todo.completed }
             : todo
         ),
+      };
+    case FILTER_TODO_LIST:
+      return {
+        ...state,
+        filter: action.payload,
       };
     default:
       return state;
