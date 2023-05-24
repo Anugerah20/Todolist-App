@@ -84,7 +84,7 @@ function FormTodoList() {
     /* START: FORM TODO */
     <main className="w-[90%] sm:w-max h-auto sm:h-auto lg:h-auto mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col mt-20 lg:mt-20 md:mt-10">
       <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
-        What the plan for today?
+        What's the plan for today?
       </h1>
       <section className="flex sm:flex justify-center sm:justify-center items-center sm:items-start w-full mx-4 sm:mx-auto mt-10 sm:mt-10 md:mt-5 lg:mt-10">
         <form onSubmit={handleSubmit}>
