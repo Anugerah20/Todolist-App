@@ -103,7 +103,7 @@ function FormTodoList() {
             }
             type="submit"
           >
-            {updateTodoList ? "UPDATE" : "ADD"}
+            {updateTodoList ? "update" : "add"}
           </button>
         </form>
       </section>
