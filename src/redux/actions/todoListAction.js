@@ -2,6 +2,7 @@ export const ADD_TODO_LIST = "ADD_TODO_LIST";
 export const REMOVE_TODO_LIST = "REMOVE_TODO_LIST";
 export const EDIT_TODO_LIST = "EDIT_TODO_LIST";
 export const TOGGLE_TODO_LIST = "TOGGLE_TODO_LIST";
+export const FILTER_TODO_LIST = "FILTER_TODO_LIST";
 
 export const addTodoList = (newTodoList) => {
   return {
@@ -18,14 +19,6 @@ export const removeTodoList = (id) => {
     },
   };
 };
-
-// export const updateTodoList = (payload) => {
-//   return {
-//     type: EDIT_TODO_LIST,
-//     payload,
-//   };
-// };
-
 export const editTodoList = (todo) => {
   return {
     type: EDIT_TODO_LIST,
@@ -37,5 +30,11 @@ export const toggleTodoList = (todo) => {
   return {
     type: "TOGGLE_TODO_LIST",
     payload: todo,
+  };
+};
+export const filterTodoList = (filter) => {
+  return {
+    type: "FILTER_TODO_LIST",
+    payload: filter,
   };
 };
