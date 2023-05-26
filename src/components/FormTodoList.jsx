@@ -61,7 +61,7 @@ function FormTodoList() {
       dispatch(addTodoList(todoObj));
       toast.success("Successfully added a task list", {
         position: "top-right",
-        hideProgressBar: true,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
