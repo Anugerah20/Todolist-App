@@ -8,6 +8,8 @@ import {
   toggleTodoList,
   filterTodoList,
 } from "../redux/actions/todoListAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function FormTodoList() {
   const dispatch = useDispatch();
@@ -19,7 +21,17 @@ function FormTodoList() {
     e.preventDefault();
 
     if (!inputTodoList.trim()) {
-      alert("This input must not be empty!");
+      // alert("This input must not be empty!");
+      toast.error("This input must not be empty!", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else if (updateTodoList) {
       // Melakukan Edit TODO
       const updatedTodo = {
@@ -180,6 +192,7 @@ function FormTodoList() {
         )}
       </section>
       {/* END: List Todo */}
+      <ToastContainer />
     </main>
   );
 }
