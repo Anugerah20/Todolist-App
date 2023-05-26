@@ -40,7 +40,7 @@ function FormTodoList() {
       dispatch(editTodoList(updatedTodo));
       setUpdateTodoList(null);
       setInputTodoList("");
-      toast.success("Update todo success", {
+      toast.success("Edit the task list data successfully", {
         position: "top-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -59,6 +59,15 @@ function FormTodoList() {
       };
       setInputTodoList("");
       dispatch(addTodoList(todoObj));
+      toast.success("Successfully added a task list", {
+        position: "top-right",
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -70,7 +79,7 @@ function FormTodoList() {
 
   // Melakukan Hapus TODO
   const handleRemoveTodoList = (todo) => {
-    toast.info("Delete todo success", {
+    toast.info("Delete task list data successfully", {
       position: "top-right",
       hideProgressBar: false,
       autoClose: 4000,
