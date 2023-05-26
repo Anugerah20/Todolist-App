@@ -21,7 +21,6 @@ function FormTodoList() {
     e.preventDefault();
 
     if (!inputTodoList.trim()) {
-      // alert("This input must not be empty!");
       toast.error("This input must not be empty!", {
         position: "top-right",
         autoClose: 4000,
@@ -61,10 +60,18 @@ function FormTodoList() {
 
   // Melakukan Hapus TODO
   const handleRemoveTodoList = (todo) => {
-    window.confirm("Are you sure to delete?") &&
-      (setInputTodoList(todo.title),
+    toast.success("Delete todo success", {
+      position: "top-right",
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setInputTodoList(todo.title),
       dispatch(removeTodoList(todo.id)),
-      setInputTodoList(""));
+      setInputTodoList("");
   };
 
   // Ceklis TODO jika sudah selesai
