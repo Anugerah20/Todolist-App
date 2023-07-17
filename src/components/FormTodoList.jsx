@@ -207,10 +207,10 @@ function FormTodoList() {
               {!todo.completed && (
                 <div className="flex items-center ml-auto gap-4 cursor-pointer">
                   <button onClick={() => handleEditTodoList(todo)}>
-                    <FiEdit2 className="text-xl sm:text-2xl text-green-700" />
+                    <FiEdit2 className="text-xl sm:text-2xl text-green-700" title="edit" />
                   </button>
                   <button onClick={() => handleRemoveTodoList(todo)}>
-                    <FiTrash className="text-xl sm:text-2xl text-red-700" />
+                    <FiTrash className="text-xl sm:text-2xl text-red-700" title="delete" />
                   </button>
                 </div>
               )}
