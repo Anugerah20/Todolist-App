@@ -15,7 +15,7 @@ function FormTodoList() {
   const dispatch = useDispatch();
   const { todos, filter } = useSelector((state) => state);
   const [inputTodoList, setInputTodoList] = useState("");
-  const [updateTodoList, setUpdateTodoList] = useState(null);
+  const [updateTodoList, setUpdateTodoList] = useState();
 
   // add localstorage
   useEffect(() => {
