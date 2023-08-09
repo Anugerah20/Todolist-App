@@ -1,6 +1,6 @@
 import { FiEdit2, FiTrash } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   addTodoList,
   removeTodoList,
@@ -17,6 +17,20 @@ function FormTodoList() {
   const [inputTodoList, setInputTodoList] = useState("");
   const [updateTodoList, setUpdateTodoList] = useState(null);
 
+  // add localstorage
+  useEffect(() => {
+    const storedList = JSON.parse(localStorage.getItem("list"));
+
+    if(!storedList && storedList.length > 0) {
+      dispatch(addTodoList(storedList));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(todos));
+  }, [todos]);
+
+  // Conditional todolist
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -32,7 +46,7 @@ function FormTodoList() {
         theme: "light",
       });
     } else if (updateTodoList) {
-      // Melakukan Edit TODO
+      // Edit TODO
       const updatedTodo = {
         ...updateTodoList,
         title: inputTodoList.trim(),
@@ -51,7 +65,7 @@ function FormTodoList() {
         theme: "light",
       });
     } else {
-      // Melakukan Tambah TODO
+      // Add TODO
       let todoObj = {
         id: Math.floor(Math.random() * 1000),
         title: inputTodoList.trim(),
@@ -71,13 +85,12 @@ function FormTodoList() {
     }
   };
 
-  // Melakukan Edit TODO
   const handleEditTodoList = (todo) => {
     setUpdateTodoList(todo);
     setInputTodoList(todo.title);
   };
 
-  // Melakukan Hapus TODO
+  // Delete TODO
   const handleRemoveTodoList = (todo) => {
     toast.info("Delete task list data successfully", {
       position: "top-right",
@@ -94,7 +107,7 @@ function FormTodoList() {
       setInputTodoList("");
   };
 
-  // Ceklis TODO jika sudah selesai
+  // Check TODO when completed
   const handleCheckboxTodoList = (todo) => {
     dispatch(toggleTodoList(todo));
   };
@@ -177,6 +190,7 @@ function FormTodoList() {
         </button>
       </section>
       {/* END: Filter Button */}
+
       {/* START: List Todo */}
       <section className="w-[90%] md:w-[90%] lg:w-[90%] flex flex-col gap-3 mx-auto mt-5 md:mt-6 lg:mt-6 bg-slate-50 shadow rounded px-4 py-4">
         {filteredTodoList.length === 0 ? (
