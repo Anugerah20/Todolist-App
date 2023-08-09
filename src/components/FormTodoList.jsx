@@ -18,13 +18,6 @@ function FormTodoList() {
   const [updateTodoList, setUpdateTodoList] = useState(null);
 
   // add localstorage
-  // useEffect(() => {
-  //   const storedList = JSON.parse(localStorage.getItem("list"));
-  //   if(storedList && storedList.length > 0) {
-  //     dispatch(addTodoList(storedList));
-  //   }
-  // }, []);
-
     useEffect(() => {
     const storedList = JSON.parse(localStorage.getItem("list"));
     if (storedList == 0 && storedList.length > 0) {
