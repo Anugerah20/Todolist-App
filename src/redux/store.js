@@ -8,4 +8,11 @@ const store = createStore(todoListReducer, {
      filter: "ALL",
 });
 
+// store.subscribe(() => {
+//   const { todos } = store.getState();
+//   if (todos && todos.length > 0) {
+//     localStorage.setItem("list", JSON.stringify(todos));
+//   }
+// });
+
 export default store;
