@@ -4,10 +4,10 @@ export const EDIT_TODO_LIST = "EDIT_TODO_LIST";
 export const TOGGLE_TODO_LIST = "TOGGLE_TODO_LIST";
 export const FILTER_TODO_LIST = "FILTER_TODO_LIST";
 
-export const addTodoList = (newTodoList) => {
+export const addTodoList = (todos) => {
   return {
     type: ADD_TODO_LIST,
-    payload: newTodoList,
+    payload: todos,
   };
 };
 
