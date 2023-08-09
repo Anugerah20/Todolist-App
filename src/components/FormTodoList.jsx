@@ -15,13 +15,12 @@ function FormTodoList() {
   const dispatch = useDispatch();
   const { todos, filter } = useSelector((state) => state);
   const [inputTodoList, setInputTodoList] = useState("");
-  const [updateTodoList, setUpdateTodoList] = useState();
+  const [updateTodoList, setUpdateTodoList] = useState(null);
 
   // add localstorage
   useEffect(() => {
     const storedList = JSON.parse(localStorage.getItem("list"));
-
-    if(!storedList && storedList.length > 0) {
+    if(storedList && storedList.length > 0) {
       dispatch(addTodoList(storedList));
     }
   }, []);
