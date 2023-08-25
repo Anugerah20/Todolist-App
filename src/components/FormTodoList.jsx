@@ -18,11 +18,11 @@ function FormTodoList() {
   const [updateTodoList, setUpdateTodoList] = useState(null);
 
   // add localstorage
-    useEffect(() => {
+  useEffect(() => {
     const storedList = JSON.parse(localStorage.getItem("list"));
     if (storedList == 0 && storedList.length > 0) {
-    dispatch(addTodoList(storedList));
-  }
+      dispatch(addTodoList(storedList));
+    }
   }, []);
 
   useEffect(() => {
@@ -134,9 +134,12 @@ function FormTodoList() {
   return (
     /* START: FORM TODO */
     <main className="w-[90%] sm:w-max h-auto sm:h-auto lg:h-auto mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col mt-20 lg:mt-20 md:mt-10">
-      <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
-        What's the plan for today?
-      </h1>
+      <div>
+        <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
+          What's the plan for today?
+        </h1>
+        <p className="mt-3 text-md text-center sm:text-left text-slate-500">Saturday, 25/06/2023</p>
+      </div>
       <section className="flex sm:flex justify-center sm:justify-center items-center sm:items-start w-full mx-4 sm:mx-auto mt-10 sm:mt-10 md:mt-5 lg:mt-10">
         <form onSubmit={handleSubmit}>
           <input
@@ -164,25 +167,22 @@ function FormTodoList() {
       {/* START: Filter Button */}
       <section className="font-sansPro flex flex-wrap justify-center sm:justify-start md:justify-center items-center mx-auto mt-6 sm:mt-6 md:mt-6 lg:mt-6">
         <button
-          className={`px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 rounded-full font-bold mb-2 sm:mb-0 text-white ${
-            filter === "ALL" ? "bg-green-500" : "bg-slate-500"
-          }`}
+          className={`px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 rounded-full font-bold mb-2 sm:mb-0 text-white ${filter === "ALL" ? "bg-green-500" : "bg-slate-500"
+            }`}
           onClick={() => handleFilterTodoList("ALL")}
         >
           ALL
         </button>
         <button
-          className={`px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 rounded-full font-bold mb-2 sm:mb-0 text-white ${
-            filter === "ACTIVE" ? "bg-green-500" : "bg-slate-500"
-          }`}
+          className={`px-3 py-2 sm:px-4 sm:py-2 me-3 sm:me-4 rounded-full font-bold mb-2 sm:mb-0 text-white ${filter === "ACTIVE" ? "bg-green-500" : "bg-slate-500"
+            }`}
           onClick={() => handleFilterTodoList("ACTIVE")}
         >
           ACTIVE
         </button>
         <button
-          className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full font-bold mb-2 sm:mb-0 text-white ${
-            filter === "COMPLETED" ? "bg-green-500" : "bg-slate-500"
-          }`}
+          className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full font-bold mb-2 sm:mb-0 text-white ${filter === "COMPLETED" ? "bg-green-500" : "bg-slate-500"
+            }`}
           onClick={() => handleFilterTodoList("COMPLETED")}
         >
           COMPLETED
