@@ -16,6 +16,21 @@ function FormTodoList() {
   const { todos, filter } = useSelector((state) => state);
   const [inputTodoList, setInputTodoList] = useState("");
   const [updateTodoList, setUpdateTodoList] = useState(null);
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
+  // add date time
+
+  const addTime = () => {
+    const newDateTime = new Date(currentDateTime);
+    newDateTime.setHours(currentDateTime.getHours() + 1);
+
+    setCurrentDateTime(newDateTime);
+  };
+
+  const formatDate = (dateTime) => {
+    return dateTime.toLocaleString();
+  };
+
 
   // add localstorage
   useEffect(() => {
@@ -138,7 +153,8 @@ function FormTodoList() {
         <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
           What's the plan for today?
         </h1>
-        <p className="mt-3 text-md text-center sm:text-left text-slate-500">Saturday, 25/06/2023</p>
+        {/* <p className="mt-3 text-md text-center sm:text-left text-slate-500">Saturday, 25/06/2023</p> */}
+        <p className="mt-3 text-md text-center sm:text-left text-slate-500">{formatDate(currentDateTime)}</p>
       </div>
       <section className="flex sm:flex justify-center sm:justify-center items-center sm:items-start w-full mx-4 sm:mx-auto mt-10 sm:mt-10 md:mt-5 lg:mt-10">
         <form onSubmit={handleSubmit}>
