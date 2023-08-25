@@ -8,7 +8,7 @@ const Header = ({ myDateTime }) => {
                </h1>
                <div className="flex items-center justify-center">
                     <div className="flex text-center">
-                         <FaCalendarAlt className="text-slate-500 me-2 mt-3" />
+                         <FaCalendarAlt className="text-slate-500 me-2 mt-4 sm:mt-3" />
                          <p className="mt-3 text-md  text-slate-500">{myDateTime}</p>
                     </div>
                </div>
