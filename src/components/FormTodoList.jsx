@@ -10,27 +10,27 @@ import {
 } from "../redux/actions/todoListAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../pages/Header";
 
 function FormTodoList() {
   const dispatch = useDispatch();
   const { todos, filter } = useSelector((state) => state);
   const [inputTodoList, setInputTodoList] = useState("");
   const [updateTodoList, setUpdateTodoList] = useState(null);
-  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const [myDateTime, setMyDateTime] = useState(new Date());
 
   // add date time
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMyDateTime(new Date());
+    }, 1000);
 
-  const addTime = () => {
-    const newDateTime = new Date(currentDateTime);
-    newDateTime.setHours(currentDateTime.getHours() + 1);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
-    setCurrentDateTime(newDateTime);
-  };
-
-  const formatDate = (dateTime) => {
-    return dateTime.toLocaleString();
-  };
-
+  const formattedDateTime = myDateTime.toLocaleString();
 
   // add localstorage
   useEffect(() => {
@@ -149,13 +149,11 @@ function FormTodoList() {
   return (
     /* START: FORM TODO */
     <main className="w-[90%] sm:w-max h-auto sm:h-auto lg:h-auto mx-auto md:mx-auto flex sm:flex justify-center sm:justify-center items-center sm:items-center font-sansPro flex-col mt-20 lg:mt-20 md:mt-10">
-      <div>
-        <h1 className="text-center text-violet-600 sm:text-center text-3xl sm:text-4xl font-extrabold">
-          What's the plan for today?
-        </h1>
-        {/* <p className="mt-3 text-md text-center sm:text-left text-slate-500">Saturday, 25/06/2023</p> */}
-        <p className="mt-3 text-md text-center sm:text-left text-slate-500">{formatDate(currentDateTime)}</p>
-      </div>
+
+      {/* START: NAVIGATION */}
+      <Header myDateTime={formattedDateTime} />
+      {/* END: NAVIGATION */}
+
       <section className="flex sm:flex justify-center sm:justify-center items-center sm:items-start w-full mx-4 sm:mx-auto mt-10 sm:mt-10 md:mt-5 lg:mt-10">
         <form onSubmit={handleSubmit}>
           <input
@@ -248,6 +246,7 @@ function FormTodoList() {
         )}
       </section>
       {/* END: List Todo */}
+
       <ToastContainer />
     </main>
   );
