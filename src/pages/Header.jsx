@@ -3,7 +3,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 const Header = ({ myDateTime }) => {
      return (
           <>
-               <h1 className="text=center text-violet-600 text-3xl sm:text-4xl font-extrabold">
+               <h1 className="text-center text-violet-600 text-3xl sm:text-4xl font-extrabold">
                     What's the plan for today?
                </h1>
                <div className="flex items-center justify-center">
