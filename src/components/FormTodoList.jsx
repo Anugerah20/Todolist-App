@@ -11,6 +11,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../pages/Header";
+import Footer from "../pages/Footer";
 
 function FormTodoList() {
   const dispatch = useDispatch();
@@ -247,6 +248,9 @@ function FormTodoList() {
       </section>
       {/* END: List Todo */}
 
+      {/* START: FOOTER */}
+      <Footer />
+      {/* END: FOOTER */}
       <ToastContainer />
     </main>
   );
